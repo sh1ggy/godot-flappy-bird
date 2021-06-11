@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://valem_assets/Mobile - Flappy Bird - Version 12 Sprites.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.09406
+
+[sub_resource type="Animation" id=2]
+resource_name = "flap"
+length = 0.305
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FlappyBird:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0804899, 0.150174, 0.220324, 0.276176 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("FlappyBird:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+GRAVITY = 350.0
+jump_velocity = 120
+
+[node name="FlappyBird" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 3
+region_enabled = true
+region_rect = Rect2( -2, 491, 84, 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.707108, 0.0883884 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "flap"
+anims/flap = SubResource( 2 )
+anims/idle = SubResource( 3 )

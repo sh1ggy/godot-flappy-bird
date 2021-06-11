@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://valem_assets/Mobile - Flappy Bird - Version 12 Sprites.png" type="Texture" id=1]
+[ext_resource path="res://valem_assets/04B_19__.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://HUD.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="InputEventAction" id=2]
+action = "jump"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="GameOverHUD" type="Node2D" parent="."]
+
+[node name="GameOver" type="Sprite" parent="GameOverHUD"]
+position = Vector2( 72, 63 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 395, 59, 96, 21 )
+
+[node name="ScoreLabelGO" type="Label" parent="GameOverHUD"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 81.0
+margin_right = 144.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScoreGO" type="Label" parent="GameOverHUD"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 108.0
+margin_right = 144.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 1 )
+text = "HighScore: 0"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabelSG" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -101.0
+margin_bottom = -84.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleText" type="Sprite" parent="."]
+position = Vector2( 72, 27 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 351, 91, 89, 24 )
+
+[node name="StartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -99.1449
+margin_right = 24.0
+margin_bottom = -71.1449
+shortcut_in_tooltip = false
+shortcut = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Sprite" parent="StartButton"]
+position = Vector2( 23.7181, 14.4149 )
+scale = Vector2( 1.01726, 1.01726 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 354, 118, 52, 29 )
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
